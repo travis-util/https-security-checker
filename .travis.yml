@@ -6,6 +6,16 @@ cache:
   - $HOME/.composer/cache/files
 
 
+before_install:
+- |
+  curl_security_check () {
+    ls $1
+    curl -H "Accept: text/plain" https://security.sensiolabs.org/check_lock -F lock=@$1 --output $1.txt
+    cat $1.txt
+    grep --quiet "No known\* vulnerabilities detected." $1.txt
+  }
+
+
 install:
 - composer require symfony/form:3.3.12
 - |
@@ -17,11 +27,13 @@ install:
 
 script:
 # This checks that the application doesn't use dependencies with known security vulnerabilities
+- curl_security_check composer.lock
 - |
   curl -H "Accept: text/plain" https://security.sensiolabs.org/check_lock -F lock=@composer.lock --output composer.txt
   cat composer.txt
   grep --quiet "No known\* vulnerabilities detected." composer.txt
 
+- curl_security_check ../composer.lock
 - |
   curl -H "Accept: text/plain" https://security.sensiolabs.org/check_lock -F lock=@../composer.lock --output ../composer.txt
   cat ../composer.txt
