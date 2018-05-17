@@ -8,11 +8,17 @@ cache:
 
 before_install:
 - |
-  curl_security_check () {
+  function curl_security_check {
+    local tmpfile=$(mktemp)  # Create a temporal file in the default temporal folder of the system
+    # Lets do some magic for the tmpfile to be removed when this script ends, even if it crashes
+    exec {FD_W}>"$tmpfile"  # Create file descriptor for writing, using first number available
+    exec {FD_R}<"$tmpfile"  # Create file descriptor for reading, using first number available
+    rm "$tmpfile"  # Delete the file, but file descriptors keep available for this script
+
     ls $1
-    curl -H "Accept: text/plain" https://security.sensiolabs.org/check_lock -F lock=@$1 --output $1.txt
-    cat $1.txt
-    grep --quiet "No known\* vulnerabilities detected." $1.txt
+    curl -H "Accept: text/plain" https://security.sensiolabs.org/check_lock -F lock=@$1 >&$FD_W
+    cat <&$FD_R
+    grep --quiet "No known\* vulnerabilities detected." <&$FD_R
   }
 
 
