@@ -23,9 +23,6 @@ script:
 - curl_security_check composer.lock
 - (! curl_security_check ../composer.lock)
 
-- dash -c ". ../curl_security_check.sh ; curl_security_check composer.lock"
-- dash -c ". ../curl_security_check.sh ; (! curl_security_check ../composer.lock)"
-
 
 after_script:
 - |
@@ -40,3 +37,6 @@ after_script:
   (! grep --quiet "No known\* vulnerabilities detected." ../composer.txt)
   # With a negation to succeed when security vulnerabilities are found.
   echo $?
+
+- dash -c ". ../curl_security_check.sh ; curl_security_check composer.lock"
+- dash -c ". ../curl_security_check.sh ; (! curl_security_check ../composer.lock)"
