@@ -3,6 +3,7 @@ Use https to connect to security.sensiolabs.org with curl
 
 # Documentation references
 * [*Dash as /bin/sh*](https://wiki.ubuntu.com/DashAsBinSh)
+* [*Closing a file descriptor, >&- vs <&-*](https://unix.stackexchange.com/questions/131801/closing-a-file-descriptor-vs)
 * [*difference between “function foo() {}” and “foo() {}”*](https://unix.stackexchange.com/questions/73750/difference-between-function-foo-and-foo)
 * [*Escaping * with Regular Expressions and Grep*](https://unix.stackexchange.com/questions/87108/escaping-with-regular-expressions-and-grep)
 * [*Functions! Divide and Conquer*](https://ryanstutorials.net/bash-scripting-tutorial/bash-functions.php)
