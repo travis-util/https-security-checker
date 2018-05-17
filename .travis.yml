@@ -20,7 +20,7 @@ before_install:
     echo $?
     cat <&$FD_R
     echo $?
-    grep "No known\* vulnerabilities detected." <&$FD_R
+    cat <&$FD_R | grep "No known\* vulnerabilities detected."
     echo $?
   }
 
