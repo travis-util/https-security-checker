@@ -8,7 +8,7 @@ curl_security_check () {
     rm "$tmpfile"  # Delete the file, but file descriptors keep available for this script
 
     ls $1
-    curl -H "Accept: text/plain" https://security.sensiolabs.org/check_lock -F lock=@$1 >&$FD_W
+    curl -H "Accept: text/plain" https://security.sensiolabs.org/check_lock -F lock=@$1 >&${FD_W}
     cat <&$FD_cat
     grep "No known\* vulnerabilities detected." <&$FD_grep
   }
