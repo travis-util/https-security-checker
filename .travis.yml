@@ -17,7 +17,9 @@ before_install:
 
     ls $1
     curl -H "Accept: text/plain" https://security.sensiolabs.org/check_lock -F lock=@$1 >&$FD_W
+    echo $?
     cat <&$FD_R
+    echo $?
     grep --quiet "No known\* vulnerabilities detected." <&$FD_R
     echo $?
   }
