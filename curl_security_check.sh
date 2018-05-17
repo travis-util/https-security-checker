@@ -5,6 +5,7 @@ curl_security_check () {
     local exec {FD_cat}<"$tmpfile"  # Create file descriptor for reading, using first number available
     local exec {FD_grep}<"$tmpfile"  # Create file descriptor for reading, using first number available
     rm "$tmpfile"  # Delete the file, but file descriptors keep available for this script
+
     ls $1
     curl -H "Accept: text/plain" https://security.sensiolabs.org/check_lock -F lock=@$1 >&$FD_W
     cat <&$FD_cat
