@@ -18,11 +18,8 @@ before_install:
 
     ls $1
     curl -H "Accept: text/plain" https://security.sensiolabs.org/check_lock -F lock=@$1 >&$FD_W
-    echo $?
     cat <&$FD_cat
-    echo $?
     grep "No known\* vulnerabilities detected." <&$FD_grep
-    echo $?
   }
 
 
@@ -43,7 +40,7 @@ script:
   cat composer.txt
   grep --quiet "No known\* vulnerabilities detected." composer.txt
 
-- curl_security_check ../composer.lock
+- (! curl_security_check ../composer.lock)
 - |
   curl -H "Accept: text/plain" https://security.sensiolabs.org/check_lock -F lock=@../composer.lock --output ../composer.txt
   cat ../composer.txt
