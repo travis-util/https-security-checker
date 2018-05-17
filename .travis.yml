@@ -22,6 +22,6 @@ script:
   cat composer.txt
 
 - |
-  curl -H "Accept: text/plain" https://security.sensiolabs.org/check_lock -F lock=@../composer.lock | tee ../composer.txt | (! grep "No known\* vulnerabilities detected." > /dev/null)
+  curl -H "Accept: text/plain" https://security.sensiolabs.org/check_lock -F lock=@../composer.lock | tee ../composer.txt | ( grep "No known\* vulnerabilities detected." > /dev/null)
   # With a negation to succeed when security vulnerabilities are found.
   cat ../composer.txt
