@@ -23,8 +23,8 @@ script:
 - curl_security_check composer.lock
 - (! curl_security_check ../composer.lock)
 
-- dash -c ". curl_security_check.sh ; curl_security_check composer.lock"
-- dash -c ". curl_security_check.sh ; (! curl_security_check ../composer.lock)"
+- dash -c ". ../curl_security_check.sh ; curl_security_check composer.lock"
+- dash -c ". ../curl_security_check.sh ; (! curl_security_check ../composer.lock)"
 
 
 after_script:
