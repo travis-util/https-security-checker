@@ -8,7 +8,7 @@ cache:
 
 before_install:
 - |
-  function curl_security_check {
+  curl_security_check () {
     local tmpfile=$(mktemp)  # Create a temporal file in the default temporal folder of the system
     # Lets do some magic for the tmpfile to be removed when this script ends, even if it crashes
     local exec {FD_W}>"$tmpfile"  # Create file descriptor for writing, using first number available
