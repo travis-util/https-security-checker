@@ -35,14 +35,19 @@ install:
 script:
 # This checks that the application doesn't use dependencies with known security vulnerabilities
 - curl_security_check composer.lock
+- (! curl_security_check ../composer.lock)
+
+
+after_script:
 - |
   curl -H "Accept: text/plain" https://security.sensiolabs.org/check_lock -F lock=@composer.lock --output composer.txt
   cat composer.txt
   grep --quiet "No known\* vulnerabilities detected." composer.txt
+  echo $?
 
-- (! curl_security_check ../composer.lock)
 - |
   curl -H "Accept: text/plain" https://security.sensiolabs.org/check_lock -F lock=@../composer.lock --output ../composer.txt
   cat ../composer.txt
   (! grep --quiet "No known\* vulnerabilities detected." ../composer.txt)
   # With a negation to succeed when security vulnerabilities are found.
+  echo $?
