@@ -7,7 +7,7 @@ cache:
 
 
 before_install:
-- . curl_security_check.sh
+- . init-source.bash
 
 install:
 - composer require symfony/form:3.3.12
