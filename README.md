@@ -1,7 +1,12 @@
 # https-security-checker
 Use https to connect to security.sensiolabs.org with curl
 
-# Documentation references
+## Usage
+- wget https://github.com/travis-util/https-security-checker/archive/master.zip --output-document=- | jar xvf /dev/stdin
+- . https-security-checker-master/init-source.bash
+- curl_security_check composer.lock
+
+## Documentation references
 * [*15 Linux lsof Command Examples (Identify Open Files)*](https://www.thegeekstuff.com/2012/08/lsof-command-examples)
 * [*Bash One-Liners Explained, Part III: All about redirections*](http://www.catonmat.net/blog/bash-one-liners-explained-part-three/)
 * [*Dash as /bin/sh*](https://wiki.ubuntu.com/DashAsBinSh)
