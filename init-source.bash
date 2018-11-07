@@ -11,5 +11,5 @@ curl_security_check () {
     curl -H "Accept: text/plain" https://security.sensiolabs.org/check_lock -F lock=@$1 >&$FD_W
     # exec $FD_W>&- # Closes file descriptor cannot be done
     cat <&$FD_cat
-    grep "No packages have known vulnerabilities." <&$FD_grep
+    grep --quiet "No packages have known vulnerabilities." <&$FD_grep
   }
