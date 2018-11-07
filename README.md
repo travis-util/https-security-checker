@@ -6,6 +6,9 @@ Use https to connect to security.sensiolabs.org with curl
 - . https-security-checker-master/init-source.bash
 - curl_security_check composer.lock
 
+## Bug
+* Seems not to work anymore from Travis since version 5.0 of sensiolabs/security-checker (2018-11)
+
 ## Documentation references
 * [*15 Linux lsof Command Examples (Identify Open Files)*](https://www.thegeekstuff.com/2012/08/lsof-command-examples)
 * [*Bash One-Liners Explained, Part III: All about redirections*](http://www.catonmat.net/blog/bash-one-liners-explained-part-three/)
